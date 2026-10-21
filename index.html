@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+  
+  <title>Frontend Mentor | Interactive comments section</title>
+
+</head>
+<body>
+  <main class="comments-app" aria-label="Comments">
+    <h1 class="sr-only">Comments</h1>
+    <div class="comments-list" id="comments-list">
+    <article class="comment" aria-label="Comment by amyrobson">
+      <header class="comment__header">
+        <img class="comment__avatar" src="./images/avatars/image-amyrobson.webp" alt="" width="32" height="32">
+        <span class="comment__author">amyrobson</span>
+        <span class="comment__date">1 month ago</span>
+      </header>
+
+      <p class="comment__content">Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.</p>
+
+      <div class="comment__vote" role="group" aria-label="Voting controls">
+        <button type="button" aria-label="Upvote comment by amyrobson">+</button>
+        <span class="comment__score">12</span>
+        <button type="button" aria-label="Downvote comment by amyrobson">−</button>
+      </div>
+
+      <button class="comment__reply" type="button">Reply</button>
+    </article>
+
+    <div class="comment-thread">
+      <article class="comment" aria-label="Comment by maxblagun">
+        <header class="comment__header">
+          <img class="comment__avatar" src="./images/avatars/image-maxblagun.webp" alt="" width="32" height="32">
+          <span class="comment__author">maxblagun</span>
+          <span class="comment__date">2 weeks ago</span>
+        </header>
+  
+        <p class="comment__content">Woah, your project looks awesome! How long have you been coding for? I'm still new, but think I want to dive into React as well soon. Perhaps you can give me an insight on where I can learn React? Thanks!</p>
+  
+        <div class="comment__vote" role="group" aria-label="Voting controls">
+          <button type="button" aria-label="Upvote comment by maxblagun">+</button>
+          <span class="comment__score">5</span>
+          <button type="button" aria-label="Downvote comment by maxblagun">−</button>
+        </div>
+  
+        <button class="comment__reply" type="button">Reply</button>
+      </article>
+
+      <ol class="comment-thread__replies" aria-label="Replies to maxblagun's comment">
+        <li>
+          <article class="comment" aria-label="Reply by ramsesmiron">
+            <header class="comment__header">
+              <img class="comment__avatar" src="./images/avatars/image-ramsesmiron.webp" alt="" width="32" height="32">
+              <span class="comment__author">ramsesmiron</span>
+              <span class="comment__date">1 week ago</span>
+            </header>
+
+            <p class="comment__content"><span class="comment__mention">@maxblagun</span> If you're still new, I'd recommend focusing on the fundamentals of HTML, CSS, and JS before considering React. It's very tempting to jump ahead but lay a solid foundation first.</p>
+
+            <div class="comment__vote" role="group" aria-label="Voting controls">
+              <button type="button" aria-label="Upvote reply by ramsesmiron">+</button>
+              <span class="comment__score">4</span>
+              <button type="button" aria-label="Downvote reply by ramsesmiron">−</button>
+            </div>
+
+            <button class="comment__reply" type="button">Reply</button>
+          </article>
+        </li>
+
+        <li>
+          <article class="comment comment--own" aria-label="Reply by juliusomo">
+            <header class="comment__header">
+              <img class="comment__avatar" src="./images/avatars/image-juliusomo.webp" alt="" width="32" height="32">
+              <span class="comment__author">juliusomo</span>
+              <span class="comment__badge">you</span>
+              <span class="comment__date">2 days ago</span>
+            </header>
+
+            <p class="comment__content"><span class="comment__mention">@ramsesmiron</span> I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.</p>
+
+            <div class="comment__vote" role="group" aria-label="Voting controls">
+              <button type="button" aria-label="Upvote reply by juliusomo">+</button>
+              <span class="comment__score">2</span>
+              <button type="button" aria-label="Downvote reply by juliusomo">−</button>
+            </div>
+
+            <div class="comment__actions" role="group" aria-label="Manage your reply">
+              <button class="comment__delete" type="button">Delete</button>
+              <button class="comment__edit" type="button">Edit</button>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </div>
+
+    </div>
+
+    <form class="comment-form" id="new-comment-form" aria-label="Add a comment">
+      <img class="comment-form__avatar" src="./images/avatars/image-juliusomo.webp" alt="Your avatar" width="40" height="40">
+
+      <label class="comment-form__label sr-only" for="new-comment">Your comment</label>
+      <textarea class="comment-form__input" id="new-comment" name="comment" rows="3" maxlength="5000" placeholder="Add a comment..." required></textarea>
+
+      <button class="comment-form__submit" type="submit">Send</button>
+    </form>
+    <p class="app-status" id="app-status" role="status" aria-live="polite"></p>
+    <noscript><p>Enable JavaScript to add, reply to, vote on, or manage comments.</p></noscript>
+  </main>
+
+  <dialog class="delete-dialog" id="delete-dialog" aria-labelledby="delete-dialog-title" aria-describedby="delete-dialog-description">
+    <h2 class="delete-dialog__title" id="delete-dialog-title">Delete comment</h2>
+    <p class="delete-dialog__description" id="delete-dialog-description">Are you sure you want to delete this comment? This will remove the comment and can't be undone.</p>
+
+    <form class="delete-dialog__actions" method="dialog">
+      <button class="delete-dialog__cancel" type="submit" value="cancel" autofocus>No, cancel</button>
+      <button class="delete-dialog__confirm" type="submit" value="confirm">Yes, delete</button>
+    </form>
+  </dialog>
+
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by Talha.
+  </footer>
+</body>
+</html>
